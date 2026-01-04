@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تحدي الصداقة 1علمي2</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:#fff;
+}
+.container{
+    max-width:700px;
+    margin:20px auto;
+    background:#1e1e2f;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+h2,h3{text-align:center}
+input,button{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:10px;
+}
+button{
+    background:#ff9800;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover{background:#e68900}
+.choice-button{
+    width:45%;
+    margin:5px;
+    background:#333;
+    border-radius:10px;
+    padding:12px;
+    cursor:pointer;
+}
+.choice-button.selected{
+    background:#ffeb3b;
+    color:#000;
+}
+.choice-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+#link{font-size:14px;}
+</style>
+</head>
+<body>
+
+<!-- الخطوة 1 -->
+<div class="container" id="step1">
+<h2>🎯 تحدي الصداقة 1علمي2</h2>
+<input id="userName" placeholder="اكتب اسمك">
+<input id="age" type="number" placeholder="اكتب عمرك">
+<button onclick="start()">ابدأ التحدي</button>
+</div>
+
+<!-- الخطوة 2: أسئلة المستخدم -->
+<div class="container" id="step2" style="display:none;">
+<h3>أجب عن الأسئلة</h3>
+
+<div class="question" id="q1">
+<p>1️⃣ لونك المفضل؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q1','أحمر',this)">أحمر</div>
+<div class="choice-button" onclick="select('q1','أزرق',this)">أزرق</div>
+</div>
+</div>
+
+<div class="question" id="q2">
+<p>2️⃣ أكلك المفضل؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q2','بيتزا',this)">بيتزا</div>
+<div class="choice-button" onclick="select('q2','برغر',this)">برغر</div>
+</div>
+</div>
+
+<div class="question" id="q3">
+<p>3️⃣ رياضتك المفضلة؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q3','كرة القدم',this)">كرة القدم</div>
+<div class="choice-button" onclick="select('q3','السباحة',this)">السباحة</div>
+</div>
+</div>
+
+<div class="question" id="q4">
+<p>4️⃣ هوايتك؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q4','ألعاب',this)">ألعاب</div>
+<div class="choice-button" onclick="select('q4','مطالعة',this)">مطالعة</div>
+</div>
+</div>
+
+<div class="question" id="q5">
+<p>5️⃣ مشروبك المفضل؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q5','قهوة',this)">قهوة</div>
+<div class="choice-button" onclick="select('q5','شاي',this)">شاي</div>
+</div>
+</div>
+
+<div class="question" id="q6">
+<p>6️⃣ الموسم المفضل لديك؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q6','الصيف',this)">الصيف</div>
+<div class="choice-button" onclick="select('q6','الشتاء',this)">الشتاء</div>
+</div>
+</div>
+
+<div class="question" id="q7">
+<p>7️⃣ نوع الموسيقى المفضل؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q7','بوب',this)">بوب</div>
+<div class="choice-button" onclick="select('q7','روك',this)">روك</div>
+</div>
+</div>
+
+<div class="question" id="q8">
+<p>8️⃣ حيوانك المفضل؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q8','قط',this)">قط</div>
+<div class="choice-button" onclick="select('q8','كلب',this)">كلب</div>
+</div>
+</div>
+
+<div class="question" id="q9">
+<p>9️⃣ عطلتك المفضلة؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q9','شاطئ',this)">شاطئ</div>
+<div class="choice-button" onclick="select('q9','جبال',this)">جبال</div>
+</div>
+</div>
+
+<div class="question" id="q10">
+<p>🔟 شخصية مشهورة تحبها؟</p>
+<div class="choice-container">
+<div class="choice-button" onclick="select('q10','إيلون ماسك',this)">إيلون ماسك</div>
+<div class="choice-button" onclick="select('q10','تايلور سويفت',this)">تايلور سويفت</div>
+</div>
+</div>
+
+<button onclick="createLink()">إنشاء رابط التحدي</button>
+</div>
+
+<!-- رابط التحدي -->
+<div class="container" id="step3" style="display:none;">
+<h3>📤 انسخ الرابط وشاركه</h3>
+<input id="link" readonly>
+<button onclick="copyLink()">نسخ الرابط</button>
+</div>
+
+<!-- اختبار صديق -->
+<div class="container" id="step4" style="display:none;">
+<h3 id="friendTitle"></h3>
+<div id="friend-questions"></div>
+<button onclick="check()">عرض النتيجة</button>
+</div>
+
+<!-- النتيجة -->
+<div class="container" id="step5" style="display:none;">
+<h2 id="result"></h2>
+</div>
+
+<script>
+let answers={}, friendAnswers={};
+
+// بدء الاختبار
+function start(){
+    let name=document.getElementById("userName").value.trim();
+    let age=parseInt(document.getElementById("age").value);
+    if(name===""){ alert("اكتب اسمك"); return; }
+    if(isNaN(age)){ alert("اكتب عمرك"); return; }
+    if(age<15){ alert("❌ يجب أن يكون عمرك 15 سنة أو أكثر"); return; }
+    localStorage.setItem("name",name);
+    document.getElementById("step1").style.display="none";
+    document.getElementById("step2").style.display="block";
+}
+
+// اختيار خيار المستخدم
+function select(q,val,btn){
+    document.querySelectorAll("#"+q+" .choice-button").forEach(b=>b.classList.remove("selected"));
+    btn.classList.add("selected");
+    answers[q]=val;
+}
+
+// إنشاء رابط التحدي مباشر
+function createLink(){
+    if(Object.keys(answers).length<10){ alert("أجب عن كل الأسئلة"); return; }
+    let code=btoa(JSON.stringify(answers));
+    let name=localStorage.getItem("name");
+    let url=window.location.href.split("?")[0]+"?challenge="+code+"&name="+encodeURIComponent(name);
+    document.getElementById("step2").style.display="none";
+    document.getElementById("step3").style.display="block";
+    document.getElementById("link").value=url;
+}
+
+// نسخ الرابط
+function copyLink(){
+    let link=document.getElementById("link");
+    link.select();
+    link.setSelectionRange(0,99999);
+    document.execCommand("copy");
+    alert("تم نسخ الرابط!");
+}
+
+// تحميل رابط التحدي عند فتح الصفحة
+function loadChallengeFromURL(){
+    const params=new URLSearchParams(window.location.search);
+    const code=params.get("challenge");
+    const name=params.get("name");
+    if(code && name){
+        answers=JSON.parse(atob(code));
+        document.getElementById("step1").style.display="none";
+        document.getElementById("step4").style.display="block";
+        document.getElementById("friendTitle").innerText="هل تعرف "+decodeURIComponent(name)+"؟";
+        generateFriendQuestions();
+    }
+}
+
+// إنشاء أسئلة الصديق ديناميكي
+function generateFriendQuestions(){
+    const texts={
+        q1:["أحمر","أزرق"], q2:["بيتزا","برغر"], q3:["كرة القدم","السباحة"],
+        q4:["ألعاب","مطالعة"], q5:["قهوة","شاي"], q6:["الصيف","الشتاء"],
+        q7:["بوب","روك"], q8:["قط","كلب"], q9:["شاطئ","جبال"], q10:["إيلون ماسك","تايلور سويفت"]
+    };
+    let container=document.getElementById("friend-questions");
+    container.innerHTML="";
+    for(let i=1;i<=10;i++){
+        let qid="q"+i;
+        let div=document.createElement("div");
+        div.className="question";
+        div.innerHTML=`<p>${i}️⃣ ${document.querySelector('#q'+i+' p').innerText}</p>
+        <div class="choice-container">
+        <div class="choice-button" onclick="selectFriend('${qid}','${texts[qid][0]}',this)">${texts[qid][0]}</div>
+        <div class="choice-button" onclick="selectFriend('${qid}','${texts[qid][1]}',this)">${texts[qid][1]}</div>
+        </div>`;
+        container.appendChild(div);
+    }
+}
+
+// اختيار صديق
+function selectFriend(q,val,btn){
+    document.querySelectorAll("#friend-questions .question:nth-child("+q.slice(1)+") .choice-button").forEach(b=>b.classList.remove("selected"));
+    btn.classList.add("selected");
+    friendAnswers[q]=val;
+}
+
+// التحقق من الإجابات وعرض النتيجة
+function check(){
+    if(Object.keys(friendAnswers).length<10){ alert("أجب عن كل الأسئلة"); return; }
+    let score=0;
+    for(let q in answers){ if(friendAnswers[q]===answers[q]) score++; }
+    document.getElementById("step4").style.display="none";
+    document.getElementById("step5").style.display="block";
+    document.getElementById("result").innerText="🔥 نتيجتك: "+score+" / 10";
+}
+
+// عند فتح الصفحة
+window.onload=loadChallengeFromURL;
+
+</script>
+</body>
+</html>
