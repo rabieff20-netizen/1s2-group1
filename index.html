@@ -196,7 +196,8 @@ function createLink(){
     if(Object.keys(answers).length<10){ alert("أجب عن كل الأسئلة"); return; }
     let code=btoa(JSON.stringify(answers));
     let name=localStorage.getItem("name");
-    let url=window.location.href.split("?")[0]+"?challenge="+code+"&name="+encodeURIComponent(name);
+    // الرابط النسبي داخل نفس الملف
+    let url=window.location.pathname+"?challenge="+code+"&name="+encodeURIComponent(name);
     document.getElementById("step2").style.display="none";
     document.getElementById("step3").style.display="block";
     document.getElementById("link").value=url;
